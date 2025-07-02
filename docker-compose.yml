@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: gestao_escolar_app
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the current directory to the container's /app directory
+      # This allows for hot-reloading and persists the SQLite DB on the host
+      - .:/app
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
